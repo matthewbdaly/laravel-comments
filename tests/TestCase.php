@@ -12,6 +12,13 @@ class TestCase extends BaseTestCase
 		return ['Matthewbdaly\LaravelComments\Providers\CommentServiceProvider'];
     }
 
+    public function setUp()
+    {
+        parent::setUp();
+        $this->artisan('migrate', ['--database' => 'sqlite']);
+        $this->loadLaravelMigrations(['--database' => 'sqlite']);
+    }
+
     public function tearDown()
     {
         m::close();

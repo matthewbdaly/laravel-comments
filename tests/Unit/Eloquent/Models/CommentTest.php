@@ -21,13 +21,13 @@ class CommentTest extends TestCase
         $obj->save();
         $comment = Comment::first();
         $this->assertEquals($comment->comment, 'Hello there');
-        $this->assertEqualsuals($comment->user_id, 1);
-        $this->assertEqualsuals($comment->user_name, 'Bob Smith');
-        $this->assertEqualsuals($comment->user_email, 'bob@example.com');
-        $this->assertEqualsuals($comment->user_url, 'http://bob.com');
-        $this->assertEqualsuals($comment->ip_address, '192.168.1.1');
-        $this->assertEqualsuals($comment->is_public, true);
-        $this->assertEqualsuals($comment->is_removed, false);
+        $this->assertEquals($comment->user_id, 1);
+        $this->assertEquals($comment->user_name, 'Bob Smith');
+        $this->assertEquals($comment->user_email, 'bob@example.com');
+        $this->assertEquals($comment->user_url, 'http://bob.com');
+        $this->assertEquals($comment->ip_address, '192.168.1.1');
+        $this->assertEquals($comment->is_public, 1);
+        $this->assertEquals($comment->is_removed, 0);
         $this->assertNotNull($comment->created_at);
         $this->assertNotNull($comment->updated_at);
     }
