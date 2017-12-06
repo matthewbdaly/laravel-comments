@@ -10,6 +10,9 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
+/**
+ * Comment has been received
+ */
 class CommentReceived
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;

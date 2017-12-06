@@ -15,7 +15,7 @@ class Comment extends BaseDecorator implements CommentContract
      * Constructor
      *
      * @param CommentContract $repository The repository to wrap.
-     * @param Cache            $cache      The cache instance.
+     * @param Cache           $cache      The cache instance.
      * @return void
      */
     public function __construct(CommentContract $repository, Cache $cache)
