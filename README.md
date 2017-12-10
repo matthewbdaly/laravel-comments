@@ -15,4 +15,4 @@ composer require matthewbdaly/laravel-comments
 Usage
 -----
 
-
+To allow comments to be attached to an object, add the trait `Matthewbdaly\LaravelComments\Eloquent\Traits\Commentable` to it. The object will then have a `comments` polymorphic relation.
