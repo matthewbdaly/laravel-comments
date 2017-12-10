@@ -28,5 +28,7 @@ class CommentableTest extends TestCase
         $obj->save();
         Event::assertDispatched(CommentReceived::class);
         $this->assertEquals('Hello there', $user->comments->first()->comment);
+        $comment = Comment::first();
+        $this->assertEquals($user->name, $comment->commentable->name);
     }
 }

@@ -19,6 +19,6 @@ class Comment extends Model
 
     public function commentable()
     {
-        return $this->morphMany();
+        return $this->morphTo();
     }
 }
