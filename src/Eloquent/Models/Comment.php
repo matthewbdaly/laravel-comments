@@ -16,4 +16,9 @@ class Comment extends Model
     protected $dispatchesEvents = [
         'saved' => CommentReceived::class
     ];
+
+    public function commentable()
+    {
+        return $this->morphMany();
+    }
 }

@@ -5,6 +5,7 @@ namespace Tests\Unit\Eloquent\Models;
 use Tests\TestCase;
 use Matthewbdaly\LaravelComments\Eloquent\Models\Comment;
 use Matthewbdaly\LaravelComments\Events\CommentReceived;
+use Tests\Fixtures\User;
 use Illuminate\Support\Facades\Event;
 
 class CommentTest extends TestCase
@@ -12,6 +13,7 @@ class CommentTest extends TestCase
     public function testCreateComment()
     {
         Event::fake();
+        $user = factory(User::class)->create();
         $obj = new Comment;
         $obj->comment = 'Hello there';
         $obj->user_id = 1;
@@ -21,6 +23,8 @@ class CommentTest extends TestCase
         $obj->ip_address = '192.168.1.1';
         $obj->is_public = true;
         $obj->is_removed = false;
+        $obj->commentable_id = $user->id;
+        $obj->commentable_type = get_class($user);
         $obj->save();
         $comment = Comment::first();
         $this->assertEquals($comment->comment, 'Hello there');

@@ -23,6 +23,8 @@ class CreateCommentsTable extends Migration
             $table->string('ip_address');
             $table->boolean('is_public');
             $table->boolean('is_removed');
+            $table->integer('commentable_id');
+            $table->string('commentable_type');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -17,6 +17,7 @@ class TestCase extends BaseTestCase
         parent::setUp();
         $this->artisan('migrate', ['--database' => 'sqlite']);
         $this->loadLaravelMigrations(['--database' => 'sqlite']);
+        $this->withFactories(__DIR__.'/factories');
     }
 
     public function tearDown()
