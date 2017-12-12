@@ -34,7 +34,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Matthewbdaly\\LaravelComments\\Providers\\CommenttServiceProvider"
+                "Matthewbdaly\\LaravelComments\\Providers\\CommentServiceProvider"
             ]
         }
     }
