@@ -17,6 +17,15 @@ class Comment extends Model
         'saved' => CommentReceived::class
     ];
 
+    protected $fillable = [
+        'comment',
+        'user_id',
+        'user_name',
+        'user_email',
+        'user_url',
+        'ip_address',
+    ];
+
     public function commentable()
     {
         return $this->morphTo();
