@@ -13,7 +13,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 /**
  * Comment has been received
  */
-class CommentFlagReceived
+class CommentFlagged
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
