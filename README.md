@@ -48,4 +48,4 @@ Fired when a new comment is submitted. The package does not include any kind of 
 
 * `Matthewbdaly\LaravelComments\Events\CommentFlagged`
 
-This event indicates that a comment has been flagged for moderator attention. You can use this event to send whatever notification is most appropriate.
+This event indicates that a comment has been flagged for moderator attention. You can use this event to send whatever notification is most appropriate (eg, email, Slack, SMS).
