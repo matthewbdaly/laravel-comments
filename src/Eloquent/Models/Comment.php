@@ -30,4 +30,9 @@ class Comment extends Model
     {
         return $this->morphTo();
     }
+
+    public function flags()
+    {
+        return $this->hasMany('Matthewbdaly\LaravelComments\Eloquent\Models\Comment\Flag');
+    }
 }
