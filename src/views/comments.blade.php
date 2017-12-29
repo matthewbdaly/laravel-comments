@@ -22,7 +22,7 @@
     <input type="hidden" name="commentable_type" value="{{ get_class($parent) }}" />
     <div class="field">
         <div class="control">
-            <input type="submit" class="button">Submit</input>
+            <input type="submit" class="button is-primary" value="Submit"></input>
         </div>
     </div>
 </form>
