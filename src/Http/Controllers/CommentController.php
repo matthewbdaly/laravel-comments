@@ -9,7 +9,9 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Contracts\Auth\Guard;
 use Matthewbdaly\LaravelComments\Http\Requests\CommentRequest;
+use Matthewbdaly\LaravelComments\Http\Requests\FlagRequest;
 use Matthewbdaly\LaravelComments\Contracts\Repositories\Comment;
+use Matthewbdaly\LaravelComments\Contracts\Repositories\Comment\Flag;
 
 /**
  * Comment controller
@@ -21,9 +23,16 @@ class CommentController extends BaseController
     /**
      * Comment repository
      *
-     * @var $repo
+     * @var $comment
      */
-    protected $repo;
+    protected $comment;
+
+    /**
+     * Flag repository
+     *
+     * @var $flag
+     */
+    protected $flag;
 
     /**
      * Auth instance
@@ -35,13 +44,15 @@ class CommentController extends BaseController
     /**
      * Constructor
      *
-     * @param Comment $repo The comment repository.
+     * @param Comment $comment The comment repository.
+     * @param Flag $flag The flag repository.
      * @param Guard $auth The auth instance.
      * @return void
      */
-    public function __construct(Comment $repo, Guard $auth)
+    public function __construct(Comment $comment, Flag $flag, Guard $auth)
     {
-        $this->repo = $repo;
+        $this->comment = $comment;
+        $this->flag = $flag;
         $this->auth = $auth;
     }
 
@@ -67,7 +78,25 @@ class CommentController extends BaseController
                 $data['user_url'] = $url;
             }
         }
-        $comment = $this->repo->create($data);
+        $this->comment->create($data);
         return view('comments::commentsubmitted');
+    }
+
+    /**
+     * Flag a comment
+     *
+     * @param  FlagRequest $request The request.
+     * @return \Illuminate\Http\Response
+     */
+    public function flag(FlagRequest $request)
+    {
+        $data = $request->all();
+        if ($user = $this->auth->user()) {
+            if (!array_key_exists('user_id', $data) && $user_id = $user->id) {
+                $data['user_id'] = $user_id;
+            }
+        }
+        $this->flag->create($data);
+        return view('comments::flagsubmitted');
     }
 }
