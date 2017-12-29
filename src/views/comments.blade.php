@@ -33,12 +33,29 @@
     </div>
 </form>
 @foreach ($parent->comments as $comment)
-    <div class="comment">
+<div class="comment">
     @if (isset($comment->user_name))
     <p>{{ $comment->user_name }}</p>
     @else
     <p>{{ 'Anonymous' }}</p>
     @endif
     <p>{{ $comment->comment }}</p>
+    <div class="flag">
+        <form method="POST" action="{{ route('comments.flag') }}">
+            {{ csrf_field() }}
+            <div class="field">
+                <label class="label">Reason</label>
+                <div class="control">
+                    <input class="input" type="text" name="reason" required placeholder="Reason for flagging" />
+                </div>
+            </div>
+            <input type="hidden" name="comment_id" value="{{ $comment->id }}" />
+            <div class="field">
+                <div class="control">
+                    <input type="submit" class="button is-primary" value="Flag this comment"></input>
+                </div>
+            </div>
+        </form>
     </div>
+</div>
 @endforeach
