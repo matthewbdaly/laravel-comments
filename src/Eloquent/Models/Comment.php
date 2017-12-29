@@ -24,6 +24,8 @@ class Comment extends Model
         'user_email',
         'user_url',
         'ip_address',
+        'commentable_id',
+        'commentable_type',
     ];
 
     public function commentable()
