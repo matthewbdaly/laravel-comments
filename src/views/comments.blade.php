@@ -33,5 +33,6 @@
     </div>
 </form>
 @foreach ($parent->comments as $comment)
+    <h4>{{ $comment->user_name || 'Anonymous' }}</h4>
     {{ $comment->comment }}
 @endforeach
