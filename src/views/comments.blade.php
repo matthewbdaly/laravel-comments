@@ -35,9 +35,9 @@
 @foreach ($parent->comments as $comment)
 <div class="comment">
     @if (isset($comment->user_name))
-    <p>{{ $comment->user_name }}</p>
+    <p class="has-text-weight-bold">{{ $comment->user_name }}</p>
     @else
-    <p>{{ 'Anonymous' }}</p>
+    <p class="has-text-weight-bold">{{ 'Anonymous' }}</p>
     @endif
     <p>{{ $comment->comment }}</p>
     <div class="flag">
