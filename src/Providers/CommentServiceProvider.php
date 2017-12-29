@@ -28,7 +28,7 @@ class CommentServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('Matthewbdaly\LaravelComments\Contracts\Comment', function () {
+        $this->app->singleton('Matthewbdaly\LaravelComments\Contracts\Repositories\Comment', function () {
             $baseRepo = new \Matthewbdaly\LaravelComments\Eloquent\Repositories\Comment(new \Matthewbdaly\LaravelComments\Eloquent\Models\Comment);
             $cachingRepo = new \Matthewbdaly\LaravelComments\Eloquent\Repositories\Decorators\Comment($baseRepo, $this->app['cache.store']);
             return $cachingRepo;
