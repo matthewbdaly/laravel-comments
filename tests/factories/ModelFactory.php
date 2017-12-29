@@ -23,3 +23,16 @@ $factory->define(Tests\Fixtures\User::class, function (Faker $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(Matthewbdaly\LaravelComments\Eloquent\Models\Comment::class, function (Faker $faker) {
+    return [
+        'comment' => 'Hello there',
+        'user_id' => 1,
+        'user_name' => 'Bob Smith',
+        'user_email' => 'bob@example.com',
+        'user_url' => 'http://bob.com',
+        'ip_address' => '192.168.1.1',
+        'is_public' => true,
+        'is_removed' => false,
+    ];
+});
