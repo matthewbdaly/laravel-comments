@@ -19,6 +19,7 @@ class CommentControllertest extends TestCase
             'comment' => 'Hello there',
         ]);
         $auth = m::mock('Illuminate\Contracts\Auth\Guard');
+        $auth->shouldReceive('user')->once()->andReturn(null);
         $repo = m::mock('Matthewbdaly\LaravelComments\Contracts\Repositories\Comment');
         $repo->shouldReceive('create')->once()->andReturn(true);
         $controller = new CommentController($repo, $auth);

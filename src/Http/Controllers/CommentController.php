@@ -54,6 +54,19 @@ class CommentController extends BaseController
     public function store(CommentRequest $request)
     {
         $data = $request->all();
+        $data['ip_address'] = $request->ip();
+        if ($user = $this->auth->user()) {
+            $data['user_id'] = $user->id;
+            if (!array_key_exists('user_name', $data) && $username = $user->name) {
+                $data['user_name'] = $username;
+            }
+            if (!array_key_exists('user_email', $data) && $email = $user->email) {
+                $data['user_email'] = $email;
+            }
+            if (!array_key_exists('user_url', $data) && $url = $user->url) {
+                $data['user_url'] = $url;
+            }
+        }
         $comment = $this->repo->create($data);
         return view('comments::commentsubmitted');
     }

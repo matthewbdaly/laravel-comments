@@ -1,15 +1,21 @@
 <form method="POST" action="{{ route('comments.submit') }}">
     {{ csrf_field() }}
     <div class="field">
+        <label class="label">Name</label>
+        <div class="control">
+            <input class="input" type="text" name="user_name" placeholder="Name" />
+        </div>
+    </div>
+    <div class="field">
         <label class="label">Email</label>
         <div class="control">
-            <input class="input" type="email" name="email" placeholder="Email address" />
+            <input class="input" type="email" name="user_email" placeholder="Email address" />
         </div>
     </div>
     <div class="field">
         <label class="label">Website</label>
         <div class="control">
-            <input class="input" type="url" name="url" placeholder="Website" />
+            <input class="input" type="url" name="user_url" placeholder="Website" />
         </div>
     </div>
     <div class="field">
