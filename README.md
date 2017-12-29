@@ -22,7 +22,7 @@ To allow comments to be attached to an object, add the trait `Matthewbdaly\Larav
 Views
 -----
 
-The package includes a view for submitting comments, which can be included in another view as follows:
+The package includes a view for submitting comments, named `comments::comments`, which can be included in another view as follows:
 
 ```php
 @include('comments::comments', ['parent' => $post])
@@ -30,12 +30,26 @@ The package includes a view for submitting comments, which can be included in an
 
 The value of `parent` must be an instance of the commentable object (eg, a blog post). The view also includes a form for flagging comments.
 
+Obviously, if you prefer you can override this view with your own content.
+
 The package also includes the following views:
 
 * `comments::commentsubmitted`
 * `comments::flagsubmitted`
 
 These simply acknowledge receipt of the comment or flag, but are fairly basic and so you should feel free to replace them as you see fit.
+
+Of course there's nothing stopping you creating your own routes and controllers for creating, viewing and flagging comments, and if you wish to build a REST API that allows for adding comments to objects you can just use these models directly:
+
+* `Matthewbdaly\LaravelComments\Eloquent\Models\Comment`
+* `Matthewbdaly\LaravelComments\Eloquent\Models\Comment\Flag`
+
+I recommend that you use my repositories, which are as follows:
+
+* `Matthewbdaly\LaravelComments\Contracts\Repositories\Comment`
+* `Matthewbdaly\LaravelComments\Contracts\Repositories\Comment\Flag`
+
+These use `matthewbdaly/laravel-repositories` and so implement caching on the decorated repository, making it simple to ensure your models get cached appropriately.
 
 Events
 ------
