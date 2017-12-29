@@ -1,4 +1,4 @@
-<form method="POST" action="/comments">
+<form method="POST" action="{{ route('comments.submit') }}">
     {{ csrf_field() }}
     <div class="field">
         <label class="label">Email</label>
