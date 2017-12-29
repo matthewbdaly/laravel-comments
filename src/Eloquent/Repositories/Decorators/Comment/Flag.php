@@ -15,7 +15,7 @@ class Flag extends BaseDecorator implements FlagContract
      * Constructor
      *
      * @param FlagContract $repository The repository to wrap.
-     * @param Cache           $cache      The cache instance.
+     * @param Cache        $cache      The cache instance.
      * @return void
      */
     public function __construct(FlagContract $repository, Cache $cache)

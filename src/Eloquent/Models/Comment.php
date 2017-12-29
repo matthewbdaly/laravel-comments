@@ -28,11 +28,21 @@ class Comment extends Model
         'commentable_type',
     ];
 
+    /**
+     * Parent object
+     *
+     * @return Illuminate\Database\Eloquent\Relations\MorphTo
+     */
     public function commentable()
     {
         return $this->morphTo();
     }
 
+    /**
+     * Flags
+     *
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function flags()
     {
         return $this->hasMany('Matthewbdaly\LaravelComments\Eloquent\Models\Comment\Flag');

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Matthewbdaly\LaravelComments\Events\CommentFlagged;
 
 /**
- * Comment model
+ * Flag model
  */
 class Flag extends Model
 {
@@ -25,6 +25,11 @@ class Flag extends Model
         'reason',
     ];
 
+    /**
+     * Comment relation
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function comment()
     {
         return $this->belongsTo('Matthewbdaly\LaravelComments\Eloquent\Models\Comment');
