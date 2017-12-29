@@ -33,5 +33,10 @@ class CommentServiceProvider extends ServiceProvider
             $cachingRepo = new \Matthewbdaly\LaravelComments\Eloquent\Repositories\Decorators\Comment($baseRepo, $this->app['cache.store']);
             return $cachingRepo;
         });
+        $this->app->singleton('Matthewbdaly\LaravelComments\Contracts\Repositories\Comment\Flag', function () {
+            $baseRepo = new \Matthewbdaly\LaravelComments\Eloquent\Repositories\Comment\Flag(new \Matthewbdaly\LaravelComments\Eloquent\Models\Comment\Flag);
+            $cachingRepo = new \Matthewbdaly\LaravelComments\Eloquent\Repositories\Decorators\Comment\Flag($baseRepo, $this->app['cache.store']);
+            return $cachingRepo;
+        });
     }
 }
