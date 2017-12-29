@@ -5,6 +5,7 @@ namespace Matthewbdaly\LaravelComments\Eloquent\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Matthewbdaly\LaravelComments\Events\CommentReceived;
+use Matthewbdaly\LaravelComments\Eloquent\Scopes\CommentScope;
 
 /**
  * Comment model
@@ -46,5 +47,17 @@ class Comment extends Model
     public function flags()
     {
         return $this->hasMany('Matthewbdaly\LaravelComments\Eloquent\Models\Comment\Flag');
+    }
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new CommentScope);
     }
 }
