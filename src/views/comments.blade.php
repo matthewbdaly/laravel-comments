@@ -33,6 +33,10 @@
     </div>
 </form>
 @foreach ($parent->comments as $comment)
-    <h4>{{ $comment->user_name || 'Anonymous' }}</h4>
+    @if (isset($comment->user_name))
+    <h4>{{ $comment->user_name }}</h4>
+    @else
+    <h4>{{ 'Anonymous' }}</h4>
+    @endif
     {{ $comment->comment }}
 @endforeach
