@@ -19,6 +19,9 @@ class CommentServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         $this->loadRoutesFrom(__DIR__.'/../routes.php');
         $this->loadViewsFrom(__DIR__.'/../views', 'comments');
+        $this->publishes([
+            __DIR__.'/../views' => resource_path('views/vendor/comments'),
+        ]);
     }
 
     /**
