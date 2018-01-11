@@ -9,6 +9,7 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Matthewbdaly\LaravelComments\Eloquent\Models\Comment\Flag as Model;
 
 /**
  * Comment has been received
@@ -20,10 +21,11 @@ class CommentFlagged
     /**
      * Create a new event instance.
      *
+     * @param Model $model The model instance.
      * @return void
      */
-    public function __construct()
+    public function __construct(Model $model)
     {
-        //
+        $this->model = $model;
     }
 }
