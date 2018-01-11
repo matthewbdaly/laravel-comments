@@ -56,10 +56,18 @@ Events
 
 You can set up listeners for the following events:
 
+* `Matthewbdaly\LaravelComments\Events\CommentBeingReceived`
+
+Fired before the comment is saved. The package does not validate comments out of the box, but you can use this to validate the comment using whatever method you wish (eg check it with Akismet, check for links), or process it before saving (eg run it through a Markdown parser).
+
 * `Matthewbdaly\LaravelComments\Events\CommentReceived`
 
-Fired when a new comment is submitted. The package does not include any kind of validation of comments, so you can instead listen for this event and implement your own functionality to validate them (eg, check it with Akismet, check for links).
+Fired when a new comment is submitted. This is useful for creating some sort of notification, such as an SMS, email, push notification etc.
+
+* `Matthewbdaly\LaravelComments\Events\CommentBeingFlagged`
+
+Fired before a comment flag is saved. Useful for processing the flag to amend it before saving it.
 
 * `Matthewbdaly\LaravelComments\Events\CommentFlagged`
 
-This event indicates that a comment has been flagged for moderator attention. You can use this event to send whatever notification is most appropriate (eg, email, Slack, SMS).
+This event fires after a comment has been flagged for moderator attention. You can use this event to send whatever notification is most appropriate (eg, email, Slack, SMS).
