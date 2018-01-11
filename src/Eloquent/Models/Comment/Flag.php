@@ -4,6 +4,7 @@ namespace Matthewbdaly\LaravelComments\Eloquent\Models\Comment;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Matthewbdaly\LaravelComments\Events\CommentBeingFlagged;
 use Matthewbdaly\LaravelComments\Events\CommentFlagged;
 
 /**
@@ -16,7 +17,8 @@ class Flag extends Model
     protected $table = 'comment_flags';
 
     protected $dispatchesEvents = [
-        'saved' => CommentFlagged::class
+        'creating' => CommentBeingFlagged::class,
+        'created' => CommentFlagged::class,
     ];
 
     protected $fillable = [

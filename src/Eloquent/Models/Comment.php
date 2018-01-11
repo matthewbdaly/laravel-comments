@@ -4,6 +4,7 @@ namespace Matthewbdaly\LaravelComments\Eloquent\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Matthewbdaly\LaravelComments\Events\CommentBeingReceived;
 use Matthewbdaly\LaravelComments\Events\CommentReceived;
 use Matthewbdaly\LaravelComments\Eloquent\Scopes\CommentScope;
 
@@ -15,7 +16,8 @@ class Comment extends Model
     use SoftDeletes;
 
     protected $dispatchesEvents = [
-        'saved' => CommentReceived::class
+        'creating' => CommentBeingReceived::class,
+        'created' => CommentReceived::class,
     ];
 
     protected $fillable = [

@@ -4,6 +4,7 @@ namespace Tests\Unit\Eloquent\Models;
 
 use Tests\TestCase;
 use Matthewbdaly\LaravelComments\Eloquent\Models\Comment;
+use Matthewbdaly\LaravelComments\Events\CommentBeingReceived;
 use Matthewbdaly\LaravelComments\Events\CommentReceived;
 use Tests\Fixtures\User;
 use Illuminate\Support\Facades\Event;
@@ -37,6 +38,7 @@ class CommentTest extends TestCase
         $this->assertEquals($comment->is_removed, 0);
         $this->assertNotNull($comment->created_at);
         $this->assertNotNull($comment->updated_at);
+        Event::assertDispatched(CommentBeingReceived::class);
         Event::assertDispatched(CommentReceived::class);
     }
 }

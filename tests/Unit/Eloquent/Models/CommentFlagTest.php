@@ -5,6 +5,7 @@ namespace Tests\Unit\Eloquent\Models;
 use Tests\TestCase;
 use Matthewbdaly\LaravelComments\Eloquent\Models\Comment;
 use Matthewbdaly\LaravelComments\Eloquent\Models\Comment\Flag;
+use Matthewbdaly\LaravelComments\Events\CommentBeingFlagged;
 use Matthewbdaly\LaravelComments\Events\CommentFlagged;
 use Tests\Fixtures\User;
 use Illuminate\Support\Facades\Event;
@@ -27,6 +28,7 @@ class CommentFlagTest extends TestCase
         $this->assertEquals($flag->comment_id, $comment->id);
         $this->assertEquals($flag->reason, 'Profanity');
         $this->assertEquals($flag->comment->id, $comment->id);
+        Event::assertDispatched(CommentBeingFlagged::class);
         Event::assertDispatched(CommentFlagged::class);
     }
 }
