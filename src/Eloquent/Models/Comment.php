@@ -17,7 +17,7 @@ class Comment extends Model
 
     protected $dispatchesEvents = [
         'creating' => CommentBeingReceived::class,
-        'created' => CommentReceived::class,
+        'created'  => CommentReceived::class,
     ];
 
     protected $fillable = [

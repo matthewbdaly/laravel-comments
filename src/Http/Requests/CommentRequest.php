@@ -27,11 +27,11 @@ class CommentRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_name' => 'string',
-            'user_email' => 'string|email',
-            'user_url' => 'string|url',
-            'comment' => 'required|string',
-            'commentable_id' => 'required|string',
+            'user_name'        => 'string',
+            'user_email'       => 'string|email',
+            'user_url'         => 'string|url',
+            'comment'          => 'required|string',
+            'commentable_id'   => 'required|string',
             'commentable_type' => 'required|string',
         ];
     }

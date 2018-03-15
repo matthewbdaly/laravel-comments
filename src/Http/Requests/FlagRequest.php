@@ -27,9 +27,9 @@ class FlagRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'string',
+            'user_id'    => 'string',
             'comment_id' => 'required|string',
-            'reason' => 'required|string',
+            'reason'     => 'required|string',
         ];
     }
 }

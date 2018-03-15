@@ -16,9 +16,9 @@ class Flag extends Model
 
     protected $table = 'comment_flags';
 
-    protected $dispatchesEvents = [
-        'creating' => CommentBeingFlagged::class,
-        'created' => CommentFlagged::class,
+    protected $dispatchesEvents  = [
+        'creating'              => CommentBeingFlagged::class,
+        'created'               => CommentFlagged::class,
     ];
 
     protected $fillable = [
