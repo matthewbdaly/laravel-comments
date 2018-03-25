@@ -16,7 +16,7 @@ class CreateCommentFlagsTable extends Migration
         Schema::create('comment_flags', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->nullable();
-            $table->integer('comment_id');
+            $table->integer('comment_id')->unsigned();
             $table->text('reason');
             $table->foreign('comment_id')->references('id')->on('comments')->onDelete('cascade');
             $table->timestamps();
