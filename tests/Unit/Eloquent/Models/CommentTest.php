@@ -41,4 +41,27 @@ class CommentTest extends TestCase
         Event::assertDispatched(CommentBeingReceived::class);
         Event::assertDispatched(CommentReceived::class);
     }
+
+    public function testFlagComment()
+    {
+        $user = factory(User::class)->create();
+        $obj = new Comment;
+        $obj->comment = 'Hello there';
+        $obj->user_id = 1;
+        $obj->user_name = 'Bob Smith';
+        $obj->user_email = 'bob@example.com';
+        $obj->user_url = 'http://bob.com';
+        $obj->ip_address = '192.168.1.1';
+        $obj->is_public = true;
+        $obj->is_removed = false;
+        $obj->commentable_id = $user->id;
+        $obj->commentable_type = get_class($user);
+        $obj->save();
+        $comment = Comment::first();
+        $comment->flags()->create([
+            'user_id' => $user->id,
+            'reason' => 'Profanity'
+        ]);
+        $this->assertCount(1, $comment->flags);
+    }
 }

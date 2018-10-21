@@ -20,6 +20,7 @@ class CreateCommentFlagsTable extends Migration
             $table->text('reason');
             $table->foreign('comment_id')->references('id')->on('comments')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
