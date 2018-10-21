@@ -26,6 +26,9 @@
         }
     ],
     "autoload": {
+        "classmap": [
+            "src/database/migrations"
+        ],
         "psr-4": {
             "Matthewbdaly\\LaravelComments\\": "src/"
         }

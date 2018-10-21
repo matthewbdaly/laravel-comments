@@ -4,3 +4,5 @@ vendor/
 composer.lock
 bootstrap/
 storage/
+build/
+infection-log.txt
