@@ -28,7 +28,24 @@ class CommentControllertest extends TestCase
         $controller = new CommentController($comment, $flag, $auth);
         $controller->store($request);
     }
-    
+
+    public function testStoreCommentWithoutUserId()
+    {
+        $user = factory(User::class)->create([]);
+        $request = CommentRequest::create('/comments/submit', 'POST', [
+            'email' => 'bob@example.com',
+            'url' => 'http://example.com',
+            'comment' => 'Hello there',
+        ]);
+        $auth = m::mock('Illuminate\Contracts\Auth\Guard');
+        $auth->shouldReceive('user')->once()->andReturn($user);
+        $comment = m::mock('Matthewbdaly\LaravelComments\Contracts\Repositories\Comment');
+        $comment->shouldReceive('create')->once()->andReturn(true);
+        $flag = m::mock('Matthewbdaly\LaravelComments\Contracts\Repositories\Comment\Flag');
+        $controller = new CommentController($comment, $flag, $auth);
+        $controller->store($request);
+    }
+
     public function testFlagComment()
     {
         $request = FlagRequest::create('/comments/flag', 'POST', [
@@ -44,7 +61,7 @@ class CommentControllertest extends TestCase
         $controller = new CommentController($comment, $flag, $auth);
         $controller->flag($request);
     }
-    
+
     public function testFlagCommentWithoutUserId()
     {
         $user = factory(User::class)->create();

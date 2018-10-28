@@ -33,4 +33,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public $url = 'http://example.com';
 }
